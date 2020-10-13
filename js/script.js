@@ -34,16 +34,15 @@ function getThreeDayForecast() {
   apiWeather
       .fetchTodayForecast()
   .then(function(response) {
+    
 
-    const data = response.data;
-    
-    
     for (let i = 0; i < 4; i++) 
     {
-      const main = data.list[i].weather[0].main;
-      const description = data.list[i].weather[0].description;
-      const temp = data.list[i].temp.day;
-      const icon = apiWeather.getHTMLElementFromIcon(data.list[i].weather[0].icon);
+      const data = response.data.list[i];
+      const main = data.weather[0].main;
+      const description = data.weather[0].description;
+      const temp = data.temp.day;
+      const icon = apiWeather.getHTMLElementFromIcon(data.weather[0].icon);
 
       document.querySelectorAll('#today-forecast-main')[i].innerHTML = main;
       document.querySelectorAll('#today-forecast-more-info')[i].innerHTML = description;
